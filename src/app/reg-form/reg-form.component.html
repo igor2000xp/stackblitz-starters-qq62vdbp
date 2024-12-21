@@ -1,0 +1,64 @@
+<form #form="ngForm" (submit)="onSubmit(form)">
+  <div>
+    <input
+      #firstName="ngModel"
+      appNamelidator
+      type="text"
+      placeholder="First Name"
+      name="name"
+      required
+      [(ngModel)]="user.name" />
+  </div>
+
+  <div class="error-block name-errors">
+    @if (firstName.hasError('NameValidatorDirective') && firstName.touched) {
+      @for (item of firstName.getError('NameValidatorDirective'); track item.message) {
+        <div class="error">
+          <span>* {{ item.message }}</span>
+        </div>
+      }
+    }
+  </div>
+  <div>
+    <input type="email" placeholder="Email" name="email" required [(ngModel)]="user.email" />
+  </div>
+  <div>
+    <input
+      type="password"
+      #passCheck="ngModel"
+      placeholder="Password"
+      name="password"
+      appPassValidator
+      [(ngModel)]="user.password" />
+  </div>
+
+  <div class="error-block password-errors">
+    @if (passCheck.hasError('PassValidatorDirective') && passCheck.touched) {
+      @for (item of passCheck.getError('PassValidatorDirective'); track item.message) {
+        <div class="error">
+          <span> * {{ item.message }} </span>
+        </div>
+      }
+    }
+  </div>
+
+  <div>
+    <input
+      type="password"
+      [(ngModel)]="confirmPassword"
+      #passConfirm="ngModel"
+      name="confirm-password"
+      placeholder="Confirm Password"
+      required />
+  </div>
+
+  <div class="error">
+    @if (passConfirm.value !== passCheck.value && passConfirm.touched) {
+      <span>* Password and Confirm Password must be equal</span>
+    }
+  </div>
+
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+</form>

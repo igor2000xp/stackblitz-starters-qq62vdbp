@@ -1,0 +1,19 @@
+.error {
+  color: red;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.error-block {
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.password-errors {
+  height: 85px;
+}
+
+.name-errors {
+  height: 55px;
+}
